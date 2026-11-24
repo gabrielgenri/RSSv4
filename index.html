@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSSv3 · Monitor Argentina y La Rioja</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #14181f;
+      --muted: #5e6875;
+      --line: #e5e8ee;
+      --accent: #111827;
+      --accent-soft: #eef1f5;
+      --ok: #166534;
+      --ok-bg: #dcfce7;
+      --off: #991b1b;
+      --off-bg: #fee2e2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 14px 56px; }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    h1 { font-size: 1.12rem; font-weight: 700; }
+    .ver-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .meta { font-size: 0.76rem; color: var(--muted); margin-top: 3px; }
+    .tabs {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      min-height: 36px;
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .panel { display: none; padding-top: 14px; }
+    .panel.active { display: block; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 14px;
+    }
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+    input, select {
+      width: 100%;
+      min-height: 38px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 0.86rem;
+      background: var(--surface);
+      color: var(--text);
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 0.73rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .chip.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .stack { display: grid; gap: 10px; }
+    .news-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .news-img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 8px 0 10px;
+      border: 1px solid var(--line);
+      background: var(--accent-soft);
+    }
+    .item-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .news-title { font-size: 1rem; font-weight: 700; line-height: 1.35; margin-bottom: 4px; }
+    .news-lead { font-size: 0.88rem; font-weight: 500; color: #2a323d; margin-bottom: 6px; }
+    .news-body { font-size: 0.84rem; color: var(--muted); margin-bottom: 10px; white-space: pre-line; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .link-btn {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+    .feed-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .feed-row:last-child { border-bottom: none; }
+    .status-pill { font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; }
+    .status-on { background: var(--ok-bg); color: var(--ok); }
+    .status-off { background: var(--off-bg); color: var(--off); }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .linked-ref {
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: var(--bg);
+      border-radius: 8px;
+      font-size: 0.78rem;
+    }
+    .linked-ref ul { padding-left: 16px; margin-top: 4px; }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      z-index: 40;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 86vh;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+      position: sticky;
+      top: -16px;
+      background: var(--surface);
+      z-index: 2;
+    }
+    .toast {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.82rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 60;
+    }
+    .toast.show { opacity: 1; }
+    @media (max-width: 600px) {
+      .btn { flex: 1 1 auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="padding-bottom:0;">
+      <div class="top-row">
+        <div>
+          <h1>Monitor RSS <span class="ver-pill">RSSv3</span></h1>
+          <div class="meta" id="metaLine">Cargando datos consolidados...</div>
+        </div>
+        <button class="btn" id="btnExportJson" type="button">Exportar feeds_argentina_larioja.json</button>
+      </div>
+      <nav class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="notas" type="button">Notas consolidadas</button>
+        <button class="tab-btn" data-tab="vinculado" type="button">Contenido vinculado (Original)</button>
+        <button class="tab-btn" data-tab="taxonomias" type="button">Taxonomías y etiquetas</button>
+        <button class="tab-btn" data-tab="canales" type="button">Canales RSS</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- TAB 1: NOTAS CONSOLIDADAS -->
+    <section id="panel-notas" class="panel active">
+      <div class="card filters">
+        <div>
+          <label for="fAmbito">Ámbito</label>
+          <select id="fAmbito">
+            <option value="ALL">Todos</option>
+            <option value="La Rioja">La Rioja</option>
+            <option value="Nacional">Nacional</option>
+          </select>
+        </div>
+        <div>
+          <label for="fTema">Taxonomía / Tema</label>
+          <select id="fTema">
+            <option value="ALL">Todos los temas</option>
+          </select>
+        </div>
+        <div>
+          <label for="fEtiqueta">Etiqueta del día</label>
+          <select id="fEtiqueta">
+            <option value="ALL">Todas las etiquetas</option>
+          </select>
+        </div>
+        <div>
+          <label for="fVersion">Versión / Corrida</label>
+          <select id="fVersion">
+            <option value="ALL">Todas las corridas</option>
+          </select>
+        </div>
+        <div>
+          <label for="fBuscar">Buscar</label>
+          <input id="fBuscar" type="search" placeholder="Título, copete, cuerpo o fuente..." />
+        </div>
+      </div>
+
+      <div class="stack" id="newsList"></div>
+    </section>
+
+    <!-- TAB 2: CONTENIDO VINCULADO ORIGINAL -->
+    <section id="panel-vinculado" class="panel">
+      <div class="card" style="margin-bottom:12px;">
+        <label>Creación de contenido original por vinculación temática</label>
+        <p class="meta">
+          Cruza noticias de distintos canales RSS bajo la misma taxonomía para redactar un contenido original que integra los temas vinculados.
+        </p>
+      </div>
+      <div class="stack" id="linkedList"></div>
+    </section>
+
+    <!-- TAB 3: TAXONOMIAS Y ETIQUETAS -->
+    <section id="panel-taxonomias" class="panel">
+      <div class="card" style="margin-bottom:12px;">
+        <label>Taxonomías configuradas (toca para filtrar notas)</label>
+        <div class="chips" id="taxonomyChips"></div>
+      </div>
+      <div class="card">
+        <label>Etiquetas activas del día (toca para filtrar notas)</label>
+        <div class="chips" id="todayTagsChips"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CANALES RSS -->
+    <section id="panel-canales" class="panel">
+      <div class="card" style="margin-bottom:12px;">
+        <label style="margin-bottom:8px;">Cargar nuevo canal RSS / Atom en feeds_argentina_larioja.json</label>
+        <form id="addFeedForm">
+          <div class="form-grid">
+            <div>
+              <label for="newNombre">Nombre del canal</label>
+              <input id="newNombre" type="text" required placeholder="Ej. Secretaría de Cultura La Rioja" />
+            </div>
+            <div>
+              <label for="newUrl">URL RSS / Atom</label>
+              <input id="newUrl" type="url" required placeholder="https://ejemplo.gob.ar/feed/" />
+            </div>
+            <div>
+              <label for="newAmbito">Ámbito</label>
+              <select id="newAmbito">
+                <option value="La Rioja">La Rioja</option>
+                <option value="Nacional">Nacional</option>
+              </select>
+            </div>
+            <div>
+              <label for="newTipo">Tipo de entidad</label>
+              <select id="newTipo">
+                <option value="Medio de Comunicación">Medio de Comunicación</option>
+                <option value="Gobierno">Gobierno</option>
+                <option value="Universidad">Universidad</option>
+                <option value="Centro de Investigación">Centro de Investigación</option>
+              </select>
+            </div>
+            <div>
+              <label for="newTema">Tema por defecto</label>
+              <select id="newTema"></select>
+            </div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button class="btn primary" type="submit">Agregar canal</button>
+            <button class="btn" type="button" id="btnResetFeeds">Restaurar catálogo base</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-bottom:8px;">
+          <label id="feedsSummaryLabel">Canales registrados</label>
+          <input id="feedFilterInput" type="search" style="max-width:260px; min-height:32px;" placeholder="Filtrar canales..." />
+        </div>
+        <div id="feedsContainer"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DE NOTICIAS DEL MOMENTO POR CANAL RSS -->
+  <div class="modal-backdrop" id="channelModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <h2 id="modalTitle" style="font-size:1rem;">Noticias del canal</h2>
+          <div class="meta" id="modalSubtitle"></div>
+        </div>
+        <button class="btn" type="button" id="closeModalBtn">Cerrar</button>
+      </div>
+      <div class="stack" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const STORAGE_KEY = "rssv3_feeds_config_v1";
+    let baseFeedsConfig = null;
+    let currentFeedsConfig = null;
+    let newsData = { items: [], contenidos_vinculados: [], versiones_disponibles: [] };
+    let selectedTag = "ALL";
+
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 2000);
+    }
+
+    function esc(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      return Number.isNaN(d.getTime()) ? iso : d.toLocaleString("es-AR", { dateStyle: "short", timeStyle: "short" });
+    }
+
+    function isSameDayArg(iso) {
+      if (!iso) return false;
+      const d = new Date(iso);
+      const now = new Date();
+      const opts = { timeZone: "America/Argentina/Buenos_Aires", year: "numeric", month: "2-digit", day: "2-digit" };
+      return d.toLocaleDateString("es-AR", opts) === now.toLocaleDateString("es-AR", opts);
+    }
+
+    function getItemTags(item) {
+      if (Array.isArray(item.etiquetas) && item.etiquetas.length) return item.etiquetas;
+      return [item.ambito, item.tema, item.tipo_entidad].filter(Boolean);
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === tabName));
+      document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("active", p.id === "panel-" + tabName));
+    }
+
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+    });
+
+    async function copyText(text, label) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(`${label} copiado`);
+      } catch {
+        showToast("No se pudo copiar automáticamente");
+      }
+    }
+
+    function openChannelModal(fuenteId, fuenteNombre) {
+      const matches = (newsData.items || []).filter(
+        (it) => it.fuente_id === fuenteId || it.fuente_nombre === fuenteNombre
+      );
+      document.getElementById("modalTitle").textContent = fuenteNombre;
+      document.getElementById("modalSubtitle").textContent = `${matches.length} nota(s) disponible(s) en la consolidación actual`;
+
+      const body = document.getElementById("modalBody");
+      if (!matches.length) {
+        body.innerHTML = `<div class="card meta">No hay noticias registradas para este canal en la corrida actual.</div>`;
+      } else {
+        body.innerHTML = matches.map((it) => {
+          const copete = it.copete || it.resumen || "";
+          const cuerpo = it.cuerpo || it.resumen || "";
+          const imgHtml = it.imagen
+            ? `<img class="news-img" src="${esc(it.imagen)}" alt="${esc(it.titulo)}" loading="lazy" onerror="this.style.display='none'" />`
+            : "";
+          return `
+            <article class="card">
+              <div class="item-top">
+                <span>${esc(it.tema)} · ${esc(it.ambito)}</span>
+                <span>${esc(fmtDate(it.fecha_publicacion))}</span>
+              </div>
+              <h3 class="news-title">${esc(it.titulo)}</h3>
+              ${imgHtml}
+              <p class="news-lead">${esc(copete)}</p>
+              <p class="news-body">${esc(cuerpo)}</p>
+              <div class="actions">
+                <a class="btn primary" href="${esc(it.enlace)}" target="_blank" rel="noopener noreferrer">Abrir nota individual</a>
+                <button class="btn" type="button" data-modal-copy="${esc(it.id)}">Copiar contenido</button>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        body.querySelectorAll("[data-modal-copy]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const it = matches.find((x) => x.id === btn.dataset.modalCopy);
+            if (!it) return;
+            const txt = `${it.titulo}
+${it.copete || it.resumen || ""}
+
+${it.cuerpo || it.resumen || ""}
+
+Fuente: ${it.fuente_nombre}
+Enlace: ${it.enlace}`;
+            copyText(txt, "Contenido de la nota");
+          });
+        });
+      }
+
+      document.getElementById("channelModal").classList.add("open");
+    }
+
+    function closeChannelModal() {
+      document.getElementById("channelModal").classList.remove("open");
+    }
+
+    document.getElementById("closeModalBtn").addEventListener("click", closeChannelModal);
+    document.getElementById("channelModal").addEventListener("click", (e) => {
+      if (e.target.id === "channelModal") closeChannelModal();
+    });
+
+    function renderNotes() {
+      const ambito = document.getElementById("fAmbito").value;
+      const tema = document.getElementById("fTema").value;
+      const etiqueta = document.getElementById("fEtiqueta").value;
+      const version = document.getElementById("fVersion").value;
+      const q = document.getElementById("fBuscar").value.trim().toLowerCase();
+
+      const items = (newsData.items || []).filter((it) => {
+        if (ambito !== "ALL" && it.ambito !== ambito) return false;
+        if (tema !== "ALL" && it.tema !== tema) return false;
+        if (version !== "ALL" && it.version_id !== version) return false;
+        const tags = getItemTags(it);
+        if (etiqueta !== "ALL" && !tags.includes(etiqueta)) return false;
+        if (q) {
+          const hay = `${it.titulo} ${it.copete || ""} ${it.cuerpo || ""} ${it.resumen || ""} ${it.fuente_nombre} ${it.tema} ${tags.join(" ")}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const listEl = document.getElementById("newsList");
+      if (!items.length) {
+        listEl.innerHTML = `<div class="card meta" style="text-align:center; padding:24px;">No hay notas que coincidan con el filtro actual.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = items.map((it, idx) => {
+        const tags = getItemTags(it);
+        const copete = it.copete || it.resumen || "";
+        const cuerpo = it.cuerpo || it.resumen || "";
+        const imgHtml = it.imagen
+          ? `<img class="news-img" src="${esc(it.imagen)}" alt="${esc(it.titulo)}" loading="lazy" onerror="this.style.display='none'" />`
+          : "";
+        return `
+          <article class="news-item">
+            <div class="item-top">
+              <span>
+                <button type="button" class="link-btn" data-open-modal-id="${esc(it.fuente_id)}" data-open-modal-name="${esc(it.fuente_nombre)}">
+                  ${esc(it.fuente_nombre)}
+                </button>
+                · ${esc(it.ambito)}
+              </span>
+              <span>${esc(fmtDate(it.fecha_publicacion))}</span>
+            </div>
+            <h2 class="news-title">
+              <a href="${esc(it.enlace)}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">
+                ${esc(it.titulo)}
+              </a>
+            </h2>
+            ${imgHtml}
+            <p class="news-lead">${esc(copete)}</p>
+            <p class="news-body">${esc(cuerpo)}</p>
+            <div class="chips" style="margin-top:0; margin-bottom:8px;">
+              <span class="chip">${esc(it.tema)}</span>
+              ${tags.map((tg) => `<span class="chip">#${esc(tg)}</span>`).join("")}
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="${esc(it.enlace)}" target="_blank" rel="noopener noreferrer">Abrir nota individual</a>
+              <button class="btn" type="button" data-copy-idx="${idx}">Copiar contenido</button>
+              <button class="btn" type="button" data-copy-link="${esc(it.enlace)}">Copiar enlace</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      listEl.querySelectorAll("[data-open-modal-name]").forEach((btn) => {
+        btn.addEventListener("click", () => openChannelModal(btn.dataset.openModalId, btn.dataset.openModalName));
+      });
+
+      listEl.querySelectorAll("[data-copy-idx]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const it = items[Number(btn.dataset.copyIdx)];
+          const payload = `${it.titulo}
+${it.copete || it.resumen || ""}
+
+${it.cuerpo || it.resumen || ""}
+
+Fuente: ${it.fuente_nombre} (${it.ambito})
+Enlace: ${it.enlace}`;
+          copyText(payload, "Contenido de la nota");
+        });
+      });
+
+      listEl.querySelectorAll("[data-copy-link]").forEach((btn) => {
+        btn.addEventListener("click", () => copyText(btn.dataset.copyLink, "Enlace"));
+      });
+    }
+
+    function renderLinkedContent() {
+      const box = document.getElementById("linkedList");
+      const list = newsData.contenidos_vinculados || [];
+      if (!list.length) {
+        box.innerHTML = `<div class="card meta">Aún no hay contenidos vinculados generados. Ejecuta el recolector o agrega más notas por tema.</div>`;
+        return;
+      }
+
+      box.innerHTML = list.map((syn, idx) => {
+        const refs = (syn.notas_vinculadas || []).map(
+          (n) => `<li><strong>${esc(n.fuente_nombre)}</strong> (${esc(n.ambito)}): <a href="${esc(n.enlace)}" target="_blank" rel="noopener noreferrer">${esc(n.titulo)}</a></li>`
+        ).join("");
+        return `
+          <article class="news-item">
+            <div class="item-top">
+              <span><strong>Taxonomía:</strong> ${esc(syn.tema)}</span>
+              <span>${esc(fmtDate(syn.fecha_generacion))}</span>
+            </div>
+            <h2 class="news-title">${esc(syn.titulo_original)}</h2>
+            <p class="news-lead">${esc(syn.copete || "")}</p>
+            <p class="news-body">${esc(syn.cuerpo_original || "")}</p>
+            <div class="linked-ref">
+              <strong>Fuentes y notas vinculadas:</strong>
+              <ul>${refs}</ul>
+            </div>
+            <div class="actions" style="margin-top:10px;">
+              <button class="btn primary" type="button" data-copy-syn="${idx}">Copiar contenido original</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      box.querySelectorAll("[data-copy-syn]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const syn = list[Number(btn.dataset.copySyn)];
+          const txt = `${syn.titulo_original}
+${syn.copete || ""}
+
+${syn.cuerpo_original || ""}`;
+          copyText(txt, "Contenido original vinculado");
+        });
+      });
+    }
+
+    function renderTaxonomiesAndTags() {
+      const taxList = currentFeedsConfig?.metadata?.taxonomia_temas || [];
+      const taxBox = document.getElementById("taxonomyChips");
+      taxBox.innerHTML = taxList.map((t) => {
+        const active = document.getElementById("fTema").value === t;
+        return `<button type="button" class="chip ${active ? "selected" : ""}" data-tema="${esc(t)}">${esc(t)}</button>`;
+      }).join("");
+
+      taxBox.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const sel = document.getElementById("fTema");
+          sel.value = sel.value === chip.dataset.tema ? "ALL" : chip.dataset.tema;
+          renderNotes();
+          renderTaxonomiesAndTags();
+          switchTab("notas");
+        });
+      });
+
+      const todayItems = (newsData.items || []).filter((i) => isSameDayArg(i.fecha_publicacion));
+      const pool = todayItems.length ? todayItems : (newsData.items || []);
+      const tagSet = new Set();
+      pool.forEach((item) => getItemTags(item).forEach((tg) => tagSet.add(tg)));
+
+      const tagsArr = Array.from(tagSet);
+      const tagSelect = document.getElementById("fEtiqueta");
+      const currentTagVal = tagSelect.value;
+      tagSelect.innerHTML = `<option value="ALL">Todas las etiquetas (${tagsArr.length})</option>` +
+        tagsArr.map((tg) => `<option value="${esc(tg)}">${esc(tg)}</option>`).join("");
+      if (tagsArr.includes(currentTagVal)) tagSelect.value = currentTagVal;
+
+      const tagsBox = document.getElementById("todayTagsChips");
+      if (!tagsArr.length) {
+        tagsBox.innerHTML = `<span class="meta">Sin etiquetas registradas hoy.</span>`;
+        return;
+      }
+      tagsBox.innerHTML = tagsArr.map((tg) => {
+        const active = selectedTag === tg || tagSelect.value === tg;
+        return `<button type="button" class="chip ${active ? "selected" : ""}" data-tag="${esc(tg)}">#${esc(tg)}</button>`;
+      }).join("");
+
+      tagsBox.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const tg = chip.dataset.tag;
+          selectedTag = selectedTag === tg ? "ALL" : tg;
+          tagSelect.value = selectedTag;
+          renderNotes();
+          renderTaxonomiesAndTags();
+          switchTab("notas");
+        });
+      });
+    }
+
+    function persistFeeds() {
+      currentFeedsConfig.metadata = currentFeedsConfig.metadata || {};
+      currentFeedsConfig.metadata.actualizado = new Date().toISOString().slice(0, 10);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentFeedsConfig));
+      renderFeeds();
+      updateMetaHeader();
+    }
+
+    function renderFeeds() {
+      const q = document.getElementById("feedFilterInput").value.trim().toLowerCase();
+      const fuentes = currentFeedsConfig?.fuentes || [];
+      const activeCount = fuentes.filter((f) => f.activo !== false).length;
+      document.getElementById("feedsSummaryLabel").textContent =
+        `Canales en catálogo: ${fuentes.length} total (${activeCount} activos)`;
+
+      const filtered = fuentes.filter((f) => {
+        if (!q) return true;
+        return `${f.nombre} ${f.url_rss} ${f.ambito} ${f.tipo_entidad}`.toLowerCase().includes(q);
+      });
+
+      document.getElementById("feedsContainer").innerHTML = filtered.map((f) => {
+        const isOn = f.activo !== false;
+        return `
+          <div class="feed-row">
+            <div style="min-width:220px; flex:1;">
+              <div style="font-weight:700; font-size:0.9rem;">
+                <button type="button" class="link-btn" style="font-size:0.9rem; padding-left:0;" data-modal-src-id="${esc(f.id)}" data-modal-src-name="${esc(f.nombre)}">
+                  ${esc(f.nombre)}
+                </button>
+                <span class="status-pill ${isOn ? "status-on" : "status-off"}">${isOn ? "Activo" : "Inactivo"}</span>
+              </div>
+              <div class="meta">${esc(f.ambito)} · ${esc(f.tipo_entidad)} · ${esc(f.url_rss)}</div>
+            </div>
+            <button class="btn" type="button" data-toggle-id="${esc(f.id)}">
+              ${isOn ? "Desactivar" : "Activar"}
+            </button>
+          </div>
+        `;
+      }).join("");
+
+      document.querySelectorAll("[data-modal-src-name]").forEach((btn) => {
+        btn.addEventListener("click", () => openChannelModal(btn.dataset.modalSrcId, btn.dataset.modalSrcName));
+      });
+
+      document.querySelectorAll("[data-toggle-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = currentFeedsConfig.fuentes.find((x) => x.id === btn.dataset.toggleId);
+          if (!target) return;
+          target.activo = target.activo === false ? true : false;
+          persistFeeds();
+          showToast(`${target.nombre}: ${target.activo ? "activado" : "desactivado"}`);
+        });
+      });
+    }
+
+    function updateMetaHeader() {
+      const totalFuentes = (currentFeedsConfig?.fuentes || []).length;
+      const activas = (currentFeedsConfig?.fuentes || []).filter((f) => f.activo !== false).length;
+      document.getElementById("metaLine").textContent =
+        `Actualizado: ${fmtDate(newsData.ultima_actualizacion)} · Canales activos: ${activas}/${totalFuentes} · Corrida: ${newsData.version_actual || "-"}`;
+    }
+
+    function exportFeedsJson() {
+      const blob = new Blob([JSON.stringify(currentFeedsConfig, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "feeds_argentina_larioja.json";
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("Descargado feeds_argentina_larioja.json");
+    }
+
+    document.getElementById("addFeedForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById("newNombre").value.trim();
+      const url_rss = document.getElementById("newUrl").value.trim();
+      const ambito = document.getElementById("newAmbito").value;
+      const tipo_entidad = document.getElementById("newTipo").value;
+      const tema_por_defecto = document.getElementById("newTema").value;
+      if (!nombre || !url_rss) return;
+
+      const slug = nombre.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 28);
+      const id = `${ambito === "La Rioja" ? "lr" : "ar"}-${slug || "canal"}-${Date.now().toString().slice(-4)}`;
+
+      currentFeedsConfig.fuentes.unshift({
+        id,
+        nombre,
+        ambito,
+        tipo_entidad,
+        url_rss,
+        formato: "rss2",
+        tema_por_defecto,
+        activo: true
+      });
+      persistFeeds();
+      e.target.reset();
+      showToast("Canal agregado a feeds_argentina_larioja.json");
+    });
+
+    document.getElementById("btnResetFeeds").addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEY);
+      currentFeedsConfig = JSON.parse(JSON.stringify(baseFeedsConfig));
+      renderFeeds();
+      updateMetaHeader();
+      showToast("Catálogo restaurado al archivo base");
+    });
+
+    document.getElementById("btnExportJson").addEventListener("click", exportFeedsJson);
+    document.getElementById("feedFilterInput").addEventListener("input", renderFeeds);
+
+    ["fAmbito", "fTema", "fEtiqueta", "fVersion"].forEach((id) => {
+      document.getElementById(id).addEventListener("change", () => {
+        if (id === "fEtiqueta") selectedTag = document.getElementById(id).value;
+        renderNotes();
+        renderTaxonomiesAndTags();
+      });
+    });
+    document.getElementById("fBuscar").addEventListener("input", renderNotes);
+
+    async function init() {
+      try {
+        const [fRes, nRes] = await Promise.all([
+          fetch("./data/feeds_argentina_larioja.json"),
+          fetch("./data/noticias_consolidadas.json")
+        ]);
+        baseFeedsConfig = await fRes.json();
+        newsData = await nRes.json();
+
+        const saved = localStorage.getItem(STORAGE_KEY);
+        currentFeedsConfig = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(baseFeedsConfig));
+
+        const temas = currentFeedsConfig.metadata?.taxonomia_temas || [];
+        const fTema = document.getElementById("fTema");
+        const newTema = document.getElementById("newTema");
+        temas.forEach((t) => {
+          fTema.appendChild(new Option(t, t));
+          newTema.appendChild(new Option(t, t));
+        });
+
+        const fVersion = document.getElementById("fVersion");
+        (newsData.versiones_disponibles || []).forEach((v) => {
+          fVersion.appendChild(new Option(v.etiqueta, v.id));
+        });
+
+        updateMetaHeader();
+        renderTaxonomiesAndTags();
+        renderNotes();
+        renderLinkedContent();
+        renderFeeds();
+      } catch (err) {
+        document.getElementById("newsList").innerHTML =
+          `<div class="card meta">Error cargando datos: ${esc(err.message)}</div>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

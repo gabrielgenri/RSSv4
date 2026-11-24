@@ -1,0 +1,141 @@
+{
+  "version_etiqueta": "RSSv3",
+  "ultima_actualizacion": "2026-11-24T15:00:00-03:00",
+  "version_actual": "24/11/2026 · 15:00 (RSSv3)",
+  "versiones_disponibles": [
+    {
+      "id": "2026-11-24-1500",
+      "etiqueta": "24/11/2026 · 15:00 (RSSv3)",
+      "timestamp": "2026-11-24T15:00:00-03:00",
+      "total_items": 4,
+      "fuentes_ok": 34,
+      "fuentes_error": 3
+    }
+  ],
+  "items": [
+    {
+      "id": "v3-seed-1",
+      "titulo": "UNLaR y CONICET impulsan proyectos sobre recursos hídricos y energías limpias en La Rioja",
+      "copete": "Convenio estratégico para investigación aplicada en zonas áridas y transición energética regional.",
+      "cuerpo": "La Universidad Nacional de La Rioja y el CONICET avanzaron en líneas conjuntas de trabajo sobre manejo eficiente del agua, energía solar y desarrollo territorial en departamentos riojanos. Los equipos científicos destacaron la articulación con organismos locales para transferir resultados a políticas públicas y sectores productivos.",
+      "resumen": "Convenio estratégico para investigación aplicada en zonas áridas y transición energética regional.",
+      "imagen": "",
+      "enlace": "https://www.unlar.edu.ar/",
+      "fecha_publicacion": "2026-11-24T13:20:00-03:00",
+      "version_id": "2026-11-24-1500",
+      "fuente_id": "lr-unlar-noticias",
+      "fuente_nombre": "Universidad Nacional de La Rioja (UNLaR)",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Universidad",
+      "tema": "Ciencia, Tecnología y Educación",
+      "etiquetas": [
+        "La Rioja",
+        "Universidad",
+        "Ciencia",
+        "UNLaR",
+        "CONICET"
+      ]
+    },
+    {
+      "id": "v3-seed-2",
+      "titulo": "CONICET difunde avances científicos en biotecnología, clima y sistemas productivos",
+      "copete": "Nuevos estudios institucionales conectan investigación básica con desafíos ambientales y productivos.",
+      "cuerpo": "Investigadores del CONICET presentaron resultados recientes vinculados a adaptación climática, sostenibilidad de recursos y mejora de procesos productivos. El cruce entre reportes científicos nacionales y demandas regionales permite identificar oportunidades de cooperación interinstitucional.",
+      "resumen": "Nuevos estudios institucionales conectan investigación básica con desafíos ambientales y productivos.",
+      "imagen": "",
+      "enlace": "https://www.conicet.gov.ar/",
+      "fecha_publicacion": "2026-11-24T12:40:00-03:00",
+      "version_id": "2026-11-24-1500",
+      "fuente_id": "ar-conicet-noticias",
+      "fuente_nombre": "CONICET - Prensa y Noticias",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "tema": "Ciencia, Tecnología y Educación",
+      "etiquetas": [
+        "Nacional",
+        "Centro de Investigación",
+        "Ciencia",
+        "CONICET"
+      ]
+    },
+    {
+      "id": "v3-seed-3",
+      "titulo": "Economías regionales, logística y transición energética en el radar productivo",
+      "copete": "Análisis de costos de transporte, cadenas de valor y financiamiento para actividades regionales.",
+      "cuerpo": "Distintos reportes económicos y regionales señalan el impacto de la logística, la energía y el acceso a herramientas de financiamiento sobre la competitividad de las economías del interior. La coordinación entre sectores productivos y entidades técnicas resulta clave para sostener la actividad.",
+      "resumen": "Análisis de costos de transporte, cadenas de valor y financiamiento para actividades regionales.",
+      "imagen": "",
+      "enlace": "https://chilecitoaldia.com.ar/",
+      "fecha_publicacion": "2026-11-24T11:50:00-03:00",
+      "version_id": "2026-11-24-1500",
+      "fuente_id": "lr-chilecito-al-dia",
+      "fuente_nombre": "Chilecito al Día",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "tema": "Economía, Finanzas y Producción",
+      "etiquetas": [
+        "La Rioja",
+        "Medio de Comunicación",
+        "Economía",
+        "Producción"
+      ]
+    },
+    {
+      "id": "v3-seed-4",
+      "titulo": "Actualización de datos abiertos y normativa pública para seguimiento institucional",
+      "copete": "Nuevos conjuntos de datos y publicaciones oficiales disponibles para consulta abierta.",
+      "cuerpo": "El catálogo de datos abiertos y los canales oficiales incorporaron actualizaciones relevantes para el monitoreo de políticas públicas, indicadores y normativa vigente. Contar con información estructurada facilita el contraste entre fuentes nacionales y provinciales.",
+      "resumen": "Nuevos conjuntos de datos y publicaciones oficiales disponibles para consulta abierta.",
+      "imagen": "",
+      "enlace": "https://datos.gob.ar/",
+      "fecha_publicacion": "2026-11-24T10:30:00-03:00",
+      "version_id": "2026-11-24-1500",
+      "fuente_id": "ar-datos-abiertos",
+      "fuente_nombre": "Datos Abiertos Argentina (Catálogo General)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Gobierno",
+      "tema": "Normativa y Datos Oficiales",
+      "etiquetas": [
+        "Nacional",
+        "Gobierno",
+        "Normativa y Datos Oficiales",
+        "Datos Abiertos"
+      ]
+    }
+  ],
+  "contenidos_vinculados": [
+    {
+      "id": "sintesis-ciencia-tecnologia-y-educacion",
+      "tema": "Ciencia, Tecnología y Educación",
+      "titulo_original": "Síntesis transversal en Ciencia, Tecnología y Educación: articulación entre La Rioja y el ámbito nacional",
+      "copete": "Cruza 2 notas de 2 fuentes vinculadas bajo la taxonomía 'Ciencia, Tecnología y Educación'.",
+      "cuerpo_original": "Al vincular los reportes de Universidad Nacional de La Rioja (UNLaR) y CONICET - Prensa y Noticias dentro de 'Ciencia, Tecnología y Educación', se observa una convergencia entre la agenda local y el panorama nacional. Por un lado, se destaca: 'UNLaR y CONICET impulsan proyectos sobre recursos hídricos y energías limpias en La Rioja'. Por otro, se suma la perspectiva de 'CONICET - Prensa y Noticias' con: 'CONICET difunde avances científicos en biotecnología, clima y sistemas productivos'. Este cruce temático permite leer los avances y desafíos de forma integrada, identificando puntos de contacto entre La Rioja y el resto del país.",
+      "fuentes_vinculadas": [
+        "Universidad Nacional de La Rioja (UNLaR)",
+        "CONICET - Prensa y Noticias"
+      ],
+      "notas_vinculadas": [
+        {
+          "id": "v3-seed-1",
+          "titulo": "UNLaR y CONICET impulsan proyectos sobre recursos hídricos y energías limpias en La Rioja",
+          "fuente_nombre": "Universidad Nacional de La Rioja (UNLaR)",
+          "ambito": "La Rioja",
+          "enlace": "https://www.unlar.edu.ar/"
+        },
+        {
+          "id": "v3-seed-2",
+          "titulo": "CONICET difunde avances científicos en biotecnología, clima y sistemas productivos",
+          "fuente_nombre": "CONICET - Prensa y Noticias",
+          "ambito": "Nacional",
+          "enlace": "https://www.conicet.gov.ar/"
+        }
+      ],
+      "etiquetas": [
+        "Ciencia",
+        "La Rioja",
+        "Nacional",
+        "Síntesis"
+      ]
+    }
+  ]
+}

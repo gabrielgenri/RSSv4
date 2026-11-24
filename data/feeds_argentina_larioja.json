@@ -1,0 +1,680 @@
+{
+  "version_etiqueta": "RSSv3",
+  "metadata": {
+    "version": "3.0.0",
+    "actualizado": "2026-11-24",
+    "descripcion": "Directorio maestro de canales RSS de medios, gobierno, universidades y ciencia de Argentina y La Rioja",
+    "frecuencia_actualizacion_cron": [
+      "0 11,16,22 * * *"
+    ],
+    "zona_horaria": "America/Argentina/La_Rioja",
+    "taxonomia_temas": [
+      "Política y Gestión",
+      "Economía, Finanzas y Producción",
+      "Ciencia, Tecnología y Educación",
+      "Sociedad, Salud y Justicia",
+      "Normativa y Datos Oficiales",
+      "Cultura y Deportes"
+    ],
+    "reglas_clasificacion": {
+      "Política y Gestión": [
+        "gobierno",
+        "gobernador",
+        "ministro",
+        "ministerio",
+        "congreso",
+        "senado",
+        "diputados",
+        "legislatura",
+        "municipio",
+        "intendente",
+        "elecciones",
+        "política",
+        "gabinete",
+        "gestión",
+        "obras públicas",
+        "vivienda"
+      ],
+      "Economía, Finanzas y Producción": [
+        "economía",
+        "dólar",
+        "inflación",
+        "bcra",
+        "banco central",
+        "finanzas",
+        "presupuesto",
+        "impuestos",
+        "agro",
+        "campo",
+        "inta",
+        "minería",
+        "litio",
+        "energía",
+        "vitivinícola",
+        "empleo",
+        "pymes",
+        "exportación",
+        "comercio"
+      ],
+      "Ciencia, Tecnología y Educación": [
+        "universidad",
+        "unlar",
+        "undec",
+        "utn",
+        "uba",
+        "unlp",
+        "unc",
+        "conicet",
+        "investigación",
+        "ciencia",
+        "tecnología",
+        "inteligencia artificial",
+        "software",
+        "educación",
+        "docentes",
+        "becas",
+        "laboratorio",
+        "repositorio"
+      ],
+      "Sociedad, Salud y Justicia": [
+        "salud",
+        "hospital",
+        "dengue",
+        "educación sanitaria",
+        "justicia",
+        "juzgado",
+        "fiscalía",
+        "seguridad",
+        "policía",
+        "sociedad",
+        "transporte",
+        "trabajo",
+        "sindicato",
+        "derechos"
+      ],
+      "Normativa y Datos Oficiales": [
+        "boletín oficial",
+        "resolución",
+        "decreto",
+        "ley",
+        "normativa",
+        "datos abiertos",
+        "dataset",
+        "estadística",
+        "indec",
+        "smn",
+        "meteorológico",
+        "ordenanza",
+        "registro"
+      ],
+      "Cultura y Deportes": [
+        "cultura",
+        "festival",
+        "chaya",
+        "música",
+        "teatro",
+        "cine",
+        "libro",
+        "patrimonio",
+        "deporte",
+        "fútbol",
+        "básquet",
+        "selección",
+        "torneo"
+      ]
+    },
+    "sintesis_tematica_habilitada": true
+  },
+  "fuentes": [
+    {
+      "id": "lr-nueva-rioja",
+      "nombre": "Nueva Rioja",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://nuevarioja.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Sociedad, Salud y Justicia",
+      "activo": true
+    },
+    {
+      "id": "lr-medios-rioja",
+      "nombre": "Medios Rioja",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://mediosrioja.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "lr-rioja-virtual",
+      "nombre": "Rioja Virtual",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://riojavirtual.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "lr-fenix-951",
+      "nombre": "Radio Fénix 95.1",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.fenix951.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Sociedad, Salud y Justicia",
+      "activo": true
+    },
+    {
+      "id": "lr-el-independiente",
+      "nombre": "El Independiente",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://elindependiente.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "lr-la-red",
+      "nombre": "Radio La Red La Rioja",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://radiolaredlarioja.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Sociedad, Salud y Justicia",
+      "activo": true
+    },
+    {
+      "id": "lr-chilecito-al-dia",
+      "nombre": "Chilecito al Día",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://chilecitoaldia.com.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "lr-gob-principal",
+      "nombre": "Gobierno de La Rioja - Portal Oficial",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://larioja.gob.ar/index.php?format=feed&type=rss",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "lr-gob-vivienda",
+      "nombre": "Ministerio de Vivienda, Tierras y Hábitat (La Rioja)",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://minvivienda.larioja.gob.ar/index.php?option=com_content&view=category&layout=blog&id=12&Itemid=242&format=feed&type=rss",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "lr-unlar-noticias",
+      "nombre": "Universidad Nacional de La Rioja (UNLaR)",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://www.unlar.edu.ar/index.php?format=feed&type=rss",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "lr-unlar-biblioteca",
+      "nombre": "UNLaR - Sistema de Bibliotecas (Koha)",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://biblioteca.unlar.edu.ar/cgi-bin/koha/opac-search.pl?q=su:La+Rioja&format=rss2",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "lr-undec-noticias",
+      "nombre": "Universidad Nacional de Chilecito (UNdeC)",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://www.undec.edu.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "lr-utn-frlr",
+      "nombre": "UTN Facultad Regional La Rioja",
+      "ambito": "La Rioja",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://www.frlr.utn.edu.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-ultimo",
+      "nombre": "Clarín - Último Momento",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/lo-ultimo/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-politica",
+      "nombre": "Clarín - Política",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/politica/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-economia",
+      "nombre": "Clarín - Economía",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/economia/",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-sociedad",
+      "nombre": "Clarín - Sociedad",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/sociedad/",
+      "formato": "rss2",
+      "tema_por_defecto": "Sociedad, Salud y Justicia",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-tecnologia",
+      "nombre": "Clarín - Tecnología",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/tecnologia/",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-cultura",
+      "nombre": "Clarín - Cultura",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/cultura/",
+      "formato": "rss2",
+      "tema_por_defecto": "Cultura y Deportes",
+      "activo": true
+    },
+    {
+      "id": "ar-clarin-rural",
+      "nombre": "Clarín - Rural",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.clarin.com/rss/rural/",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-lanacion-general",
+      "nombre": "La Nación - Portada",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/?outputType=xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-lanacion-politica",
+      "nombre": "La Nación - Política",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/politica/?outputType=xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-lanacion-economia",
+      "nombre": "La Nación - Economía",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/economia/?outputType=xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-lanacion-ciencia",
+      "nombre": "La Nación - Ciencia",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/ciencia/?outputType=xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-infobae-general",
+      "nombre": "Infobae - Últimas Noticias",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.infobae.com/feeds/rss/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-pagina12-pais",
+      "nombre": "Página/12 - El País",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.pagina12.com.ar/arc/outboundfeeds/rss/secciones/el-pais/notas",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-pagina12-economia",
+      "nombre": "Página/12 - Economía",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.pagina12.com.ar/arc/outboundfeeds/rss/secciones/economia/notas",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-pagina12-sociedad",
+      "nombre": "Página/12 - Sociedad",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.pagina12.com.ar/arc/outboundfeeds/rss/secciones/sociedad/notas",
+      "formato": "rss2",
+      "tema_por_defecto": "Sociedad, Salud y Justicia",
+      "activo": true
+    },
+    {
+      "id": "ar-pagina12-cash",
+      "nombre": "Página/12 - Cash",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.pagina12.com.ar/arc/outboundfeeds/rss/suplementos/cash/notas",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-ambito-ultimas",
+      "nombre": "Ámbito Financiero - Últimas Noticias",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.ambito.com/rss/pages/ultimas-noticias.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-ambito-economia",
+      "nombre": "Ámbito Financiero - Economía",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.ambito.com/rss/economia.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-ambito-finanzas",
+      "nombre": "Ámbito Financiero - Finanzas",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.ambito.com/rss/finanzas.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-perfil-general",
+      "nombre": "Perfil - General",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.perfil.com/feed",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-perfil-politica",
+      "nombre": "Perfil - Política",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.perfil.com/feed/politica",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-perfil-economia",
+      "nombre": "Perfil - Economía",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.perfil.com/feed/economia",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-iprofesional-home",
+      "nombre": "iProfesional - Últimas Noticias",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.iprofesional.com/rss/home",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-iprofesional-economia",
+      "nombre": "iProfesional - Economía",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.iprofesional.com/rss/economia",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-iprofesional-tecnologia",
+      "nombre": "iProfesional - Tecnología",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.iprofesional.com/rss/tecnologia",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-cronista-general",
+      "nombre": "El Cronista",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.cronista.com/files/rss/news.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-cronista-ecopol",
+      "nombre": "El Cronista - Economía y Política",
+      "ambito": "Nacional",
+      "tipo_entidad": "Medio de Comunicación",
+      "url_rss": "https://www.cronista.com/files/rss/economiapolitica.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-conicet-repositorio-rss",
+      "nombre": "CONICET - Repositorio Institucional (RSS 2.0)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://ri.conicet.gov.ar/feed/rss_2.0/site",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-conicet-repositorio-atom",
+      "nombre": "CONICET - Repositorio Institucional (Atom 1.0)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://ri.conicet.gov.ar/feed/atom_1.0/site",
+      "formato": "atom",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-conicet-noticias",
+      "nombre": "CONICET - Prensa y Noticias",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://www.conicet.gov.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-uba-noticias",
+      "nombre": "Universidad de Buenos Aires (UBA)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://www.uba.ar/noticias/rss",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-unlp-revistas",
+      "nombre": "UNLP - Portal de Revistas Científicas",
+      "ambito": "Nacional",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://revistas.unlp.edu.ar/index/gateway/plugin/WebFeedGatewayPlugin/rss2",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-unc-noticias",
+      "nombre": "Universidad Nacional de Córdoba (UNC)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Universidad",
+      "url_rss": "https://www.unc.edu.ar/rss.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-chequeado",
+      "nombre": "Chequeado",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://chequeado.com/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-cippec",
+      "nombre": "CIPPEC - Políticas Públicas",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://www.cippec.org/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-flacso",
+      "nombre": "FLACSO Argentina",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://www.flacso.org.ar/feed/",
+      "formato": "rss2",
+      "tema_por_defecto": "Ciencia, Tecnología y Educación",
+      "activo": true
+    },
+    {
+      "id": "ar-gob-noticias",
+      "nombre": "Argentina.gob.ar - Noticias Oficiales",
+      "ambito": "Nacional",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://www.argentina.gob.ar/noticias/rss",
+      "formato": "rss2",
+      "tema_por_defecto": "Política y Gestión",
+      "activo": true
+    },
+    {
+      "id": "ar-datos-abiertos",
+      "nombre": "Datos Abiertos Argentina (Catálogo General)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://datos.gob.ar/feeds/dataset.atom",
+      "formato": "atom",
+      "tema_por_defecto": "Normativa y Datos Oficiales",
+      "activo": true
+    },
+    {
+      "id": "ar-datos-boletin-oficial",
+      "nombre": "Datos Abiertos - Boletín Oficial",
+      "ambito": "Nacional",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://datos.gob.ar/feeds/dataset.atom?tags=bolet%C3%ADn+oficial",
+      "formato": "atom",
+      "tema_por_defecto": "Normativa y Datos Oficiales",
+      "activo": true
+    },
+    {
+      "id": "ar-datos-smn",
+      "nombre": "Servicio Meteorológico Nacional (Datasets)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://datos.gob.ar/feeds/dataset.atom?organization=smn",
+      "formato": "atom",
+      "tema_por_defecto": "Normativa y Datos Oficiales",
+      "activo": true
+    },
+    {
+      "id": "ar-bcra-noticias",
+      "nombre": "Banco Central de la República Argentina (BCRA)",
+      "ambito": "Nacional",
+      "tipo_entidad": "Gobierno",
+      "url_rss": "https://www.bcra.gob.ar/rss/noticias.xml",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    },
+    {
+      "id": "ar-inta-noticias",
+      "nombre": "INTA - Noticias Agropecuarias",
+      "ambito": "Nacional",
+      "tipo_entidad": "Centro de Investigación",
+      "url_rss": "https://www.argentina.gob.ar/inta/noticias/rss",
+      "formato": "rss2",
+      "tema_por_defecto": "Economía, Finanzas y Producción",
+      "activo": true
+    }
+  ]
+}
